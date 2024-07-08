@@ -48,5 +48,26 @@ namespace dotnet_rpg.Services.CharacterService
             }
             throw new Exception("character does not exist");
         }
+
+        public async Task<ResponseService<GetCharacterDTO>> updateCharacter(UpdateCharacterDTO updatedCharacter)
+        {
+            var responseService = new ResponseService<GetCharacterDTO>();
+            try
+            {
+                var character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
+                if (character is null)
+                    throw new Exception($"The character with the id '{updatedCharacter.Id}' can not be found");
+
+                _mapper.Map(updatedCharacter, character);
+
+                responseService.Data = _mapper.Map<GetCharacterDTO>(character);
+            }
+            catch (Exception ex)
+            {
+                responseService.Success = false;
+                responseService.Message = ex.Message;
+            }
+            return responseService;
+        }
     }
 }
