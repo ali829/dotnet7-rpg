@@ -1,8 +1,4 @@
 global using dotnet_rpg.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using dotnet_rpg.DTOs.charachters;
 using dotnet_rpg.DTOs.characters;
 using Microsoft.AspNetCore.Mvc;
